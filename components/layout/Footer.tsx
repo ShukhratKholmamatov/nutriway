@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, MapPin } from "lucide-react";
 import { getArticles } from "@/lib/articles";
 import { InstagramIcon, TelegramIcon } from "@/components/ui/BrandIcons";
 import type { Dict } from "@/lib/content";
@@ -55,9 +55,6 @@ export function Footer({ locale, t }: { locale: Locale; t: Dict }) {
               </SocialLink>
               <SocialLink href={social.instagram} label="Instagram">
                 <InstagramIcon size={18} />
-              </SocialLink>
-              <SocialLink href={`mailto:${social.email}`} label="Email">
-                <Mail size={18} aria-hidden />
               </SocialLink>
             </div>
           </div>

@@ -39,7 +39,6 @@ export function OrganizationJsonLd({ locale }: { locale: Locale }) {
     logo: `${SITE_URL}${brand.logo}`,
     image: `${SITE_URL}/${locale}/opengraph-image`,
     description: t.meta.description,
-    email: social.email,
     telephone: phones.map((p) => p.tel),
     sameAs: [social.telegram, social.instagram],
     areaServed: { "@type": "Country", name: "Uzbekistan" },

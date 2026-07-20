@@ -96,14 +96,31 @@ components:
 Business details (phone numbers, addresses, opening hours, social links) live in
 `lib/site.ts`. Image assignments per section live in `lib/content/index.ts`.
 
-### Placeholders to replace before launch
+### Contact data
 
-`lib/site.ts` ships with placeholder contact data:
+Real details live in `lib/site.ts`:
 
-- `phones` — both numbers are `+998 (90) 000-00-00` / `+998 (71) 000-00-00`
-- `locations` — street addresses and coordinates are examples
-- `social` — Telegram / Instagram / email handles are guesses
-- `SITE_URL` — defaults to `https://nutriway.uz`
+- **Phone** — `+998 95 393 18 18`
+- **Address** — Mahtumquli ko'chasi 99v, Yashnobod, Tashkent
+  (`41.305503, 69.326934`, resolved from the shared Google Maps link)
+- **Telegram** — [@nutriwaycollagen](https://t.me/nutriwaycollagen)
+- **Instagram** — [@nutriway.collagen.official](https://www.instagram.com/nutriway.collagen.official/)
+
+The address card embeds a Google map via `mapEmbedUrl()` — it uses the keyless
+`output=embed` form, so **no API key or billing account is needed**. The embed
+is `loading="lazy"`, so it only fetches once the contacts section is scrolled
+into view.
+
+Still to confirm:
+
+- ⚠️ **`locations[0].hours` is a guess** (`Mo-Sa 09:00-19:00`). It is shown on
+  the page *and* published in `LocalBusiness` structured data, so correct it
+  before launch.
+- `SITE_URL` defaults to `https://nutriway.uz` — set `NEXT_PUBLIC_SITE_URL` for
+  the real domain.
+- There is no public email address; the contact block intentionally shows only
+  phone, Telegram and Instagram. Add `email` back to `social` in `lib/site.ts`
+  (and to the Organization schema) if one exists.
 
 ---
 

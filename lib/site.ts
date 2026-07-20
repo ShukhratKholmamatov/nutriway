@@ -30,46 +30,49 @@ export const brand = {
 
 /** Phone numbers — E.164 in `tel`, pretty form in `label`. */
 export const phones = [
-  { tel: "+998900000000", label: "+998 (90) 000-00-00", role: "sales" },
-  { tel: "+998710000000", label: "+998 (71) 000-00-00", role: "office" },
+  { tel: "+998953931818", label: "+998 (95) 393-18-18", role: "sales" },
 ] as const;
 
 export const social = {
-  telegram: "https://t.me/nutriway_uz",
-  instagram: "https://instagram.com/nutriway.uz",
-  email: "info@nutriway.uz",
+  telegram: "https://t.me/nutriwaycollagen",
+  instagram: "https://www.instagram.com/nutriway.collagen.official/",
 } as const;
 
 /** Physical locations. `geo` is used for LocalBusiness structured data. */
 export const locations = [
   {
-    id: "tashkent-office",
-    geo: { lat: 41.311081, lng: 69.240562 },
-    mapUrl: "https://maps.google.com/?q=41.311081,69.240562",
+    id: "tashkent-yashnobod",
+    geo: { lat: 41.305503, lng: 69.326934 },
+    mapUrl: "https://maps.app.goo.gl/CF4L5PF1jch2RxBp9",
     hours: "Mo-Sa 09:00-19:00",
     street: {
-      uz: "Amir Temur ko'chasi, 1-uy",
-      ru: "улица Амира Темура, 1",
+      uz: "Mahtumquli ko'chasi, 99v-uy",
+      ru: "улица Махтумкули, дом 99в",
     },
-    city: { uz: "Toshkent", ru: "Ташкент" },
+    city: {
+      uz: "Toshkent shahri, Yashnobod tumani",
+      ru: "город Ташкент, Яшнободский район",
+    },
     title: {
-      uz: "Bosh ofis va ombor",
-      ru: "Главный офис и склад",
-    },
-  },
-  {
-    id: "samarkand-point",
-    geo: { lat: 39.654722, lng: 66.959722 },
-    mapUrl: "https://maps.google.com/?q=39.654722,66.959722",
-    hours: "Mo-Sa 09:00-18:00",
-    street: {
-      uz: "Registon ko'chasi, 10-uy",
-      ru: "улица Регистан, 10",
-    },
-    city: { uz: "Samarqand", ru: "Самарканд" },
-    title: {
-      uz: "Savdo nuqtasi",
-      ru: "Торговая точка",
+      uz: "Ofis va ombor",
+      ru: "Офис и склад",
     },
   },
 ] as const;
+
+/**
+ * Google Maps embed for a location. Uses the keyless `output=embed` form, so
+ * no API key or billing account is required.
+ */
+export function mapEmbedUrl(
+  geo: { lat: number; lng: number },
+  locale: Locale
+) {
+  const params = new URLSearchParams({
+    q: `${geo.lat},${geo.lng}`,
+    z: "16",
+    hl: locale,
+    output: "embed",
+  });
+  return `https://maps.google.com/maps?${params.toString()}`;
+}

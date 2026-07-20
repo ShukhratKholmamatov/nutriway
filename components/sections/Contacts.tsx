@@ -1,7 +1,7 @@
-import { Phone, MapPin, Clock, Mail, ExternalLink } from "lucide-react";
+import { Phone, MapPin, Clock, ExternalLink } from "lucide-react";
 import { InstagramIcon, TelegramIcon } from "@/components/ui/BrandIcons";
 import type { Dict } from "@/lib/content";
-import { locations, phones, social, type Locale } from "@/lib/site";
+import { locations, mapEmbedUrl, phones, social, type Locale } from "@/lib/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { LeadForm } from "./LeadForm";
@@ -96,6 +96,17 @@ export function Contacts({ t, locale }: { t: Dict; locale: Locale }) {
                     </li>
                   ))}
                 </ul>
+
+                {/* Keyless Google Maps embed — no API key needed. */}
+                <div className="mt-6 overflow-hidden rounded-[var(--radius-md)] border border-wine-800/12">
+                  <iframe
+                    src={mapEmbedUrl(locations[0].geo, locale)}
+                    title={t.contacts.mapTitle}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="block h-64 w-full border-0 sm:h-72"
+                  />
+                </div>
               </div>
             </Reveal>
 
@@ -112,10 +123,6 @@ export function Contacts({ t, locale }: { t: Dict; locale: Locale }) {
                   <Social href={social.instagram} label="Instagram">
                     <InstagramIcon size={17} />
                     Instagram
-                  </Social>
-                  <Social href={`mailto:${social.email}`} label="Email">
-                    <Mail size={17} aria-hidden />
-                    {social.email}
                   </Social>
                 </div>
               </div>

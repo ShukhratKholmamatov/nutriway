@@ -364,6 +364,7 @@ export const ru: Dict = {
     socialTitle: "Социальные сети",
     hoursLabel: "Часы работы",
     mapLink: "Открыть на карте",
+    mapTitle: "Офис NUTRIWAY на карте",
     roles: { sales: "Отдел продаж", office: "Офис" },
   },
 

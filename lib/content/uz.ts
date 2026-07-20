@@ -364,6 +364,7 @@ export const uz = {
     socialTitle: "Ijtimoiy tarmoqlar",
     hoursLabel: "Ish vaqti",
     mapLink: "Xaritada ochish",
+    mapTitle: "NUTRIWAY ofisi xaritada",
     roles: { sales: "Savdo bo'limi", office: "Ofis" } as Record<string, string>,
   },
 
