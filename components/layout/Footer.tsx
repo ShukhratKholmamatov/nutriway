@@ -4,7 +4,7 @@ import { Phone, MapPin } from "lucide-react";
 import { getArticles } from "@/lib/articles";
 import { InstagramIcon, TelegramIcon } from "@/components/ui/BrandIcons";
 import type { Dict } from "@/lib/content";
-import { brand, locations, phones, social, type Locale } from "@/lib/site";
+import { brand, locations, primaryPhone, social, type Locale } from "@/lib/site";
 
 export function Footer({ locale, t }: { locale: Locale; t: Dict }) {
   const year = new Date().getFullYear();
@@ -82,17 +82,15 @@ export function Footer({ locale, t }: { locale: Locale; t: Dict }) {
               {t.footer.contact}
             </h3>
             <ul className="mt-6 space-y-4">
-              {phones.map((p) => (
-                <li key={p.tel}>
-                  <a
-                    href={`tel:${p.tel}`}
-                    className="flex items-center gap-3 py-2 text-sm text-bone-100 transition-colors hover:text-gold-300"
-                  >
-                    <Phone size={16} className="text-gold-500" aria-hidden />
-                    {p.label}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a
+                  href={`tel:${primaryPhone.tel}`}
+                  className="flex items-center gap-3 py-2 text-sm text-bone-100 transition-colors hover:text-gold-300"
+                >
+                  <Phone size={16} className="text-gold-500" aria-hidden />
+                  {primaryPhone.label}
+                </a>
+              </li>
               {locations.map((loc) => (
                 <li
                   key={loc.id}

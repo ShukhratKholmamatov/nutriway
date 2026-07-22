@@ -100,7 +100,10 @@ Business details (phone numbers, addresses, opening hours, social links) live in
 
 Real details live in `lib/site.ts`:
 
-- **Phone** — `+998 95 393 18 18`
+- **Phone** — `primaryPhone` (`+998 95 393 18 18`) is the main line shown in the
+  header and footer. `phones[]` holds the department lines listed in the
+  contacts card — currently `+998 91 331 00 00` as "Savdo bo'limi". Both are
+  published in the Organization schema via `allPhones`.
 - **Address** — Mahtumquli ko'chasi 99v, Yashnobod, Tashkent
   (`41.305503, 69.326934`, resolved from the shared Google Maps link)
 - **Telegram** — [@nutriwaycollagen](https://t.me/nutriwaycollagen)

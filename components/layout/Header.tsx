@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, Phone } from "lucide-react";
 import type { Dict } from "@/lib/content";
 import { articleAlternates, findArticleKey } from "@/lib/articles";
-import { brand, phones, type Locale } from "@/lib/site";
+import { brand, primaryPhone, type Locale } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
 /**
@@ -158,7 +158,7 @@ export function Header({ locale, t }: { locale: Locale; t: Dict }) {
             />
 
             <a
-              href={`tel:${phones[0].tel}`}
+              href={`tel:${primaryPhone.tel}`}
               className={cn(
                 "hidden items-center gap-2 whitespace-nowrap rounded-[var(--radius-sm)] px-3 py-2 text-[13px] font-semibold transition-colors 2xl:inline-flex",
                 solid
@@ -167,7 +167,7 @@ export function Header({ locale, t }: { locale: Locale; t: Dict }) {
               )}
             >
               <Phone size={15} strokeWidth={2.2} aria-hidden />
-              {phones[0].label}
+              {primaryPhone.label}
             </a>
 
             <a
@@ -245,14 +245,14 @@ export function Header({ locale, t }: { locale: Locale; t: Dict }) {
               </motion.a>
 
               <motion.a
-                href={`tel:${phones[0].tel}`}
+                href={`tel:${primaryPhone.tel}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
                 className="mt-3 flex items-center justify-center gap-2 py-3 text-bone-200"
               >
                 <Phone size={16} aria-hidden />
-                {phones[0].label}
+                {primaryPhone.label}
               </motion.a>
             </nav>
           </motion.div>

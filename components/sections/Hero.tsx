@@ -1,11 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ArrowDown, ShieldCheck, Sparkles } from "lucide-react";
 import type { Dict } from "@/lib/content";
-import { ProductJar } from "@/components/ui/ProductJar";
-import { RingsMotif, CapsuleMotif } from "@/components/ui/Motifs";
+import { RingsMotif } from "@/components/ui/Motifs";
 
 export function Hero({ t }: { t: Dict }) {
   const ref = useRef<HTMLElement>(null);
@@ -117,7 +117,7 @@ export function Hero({ t }: { t: Dict }) {
           </motion.dl>
         </motion.div>
 
-        {/* Vector pack — no photography */}
+        {/* Product photography, floating over the vector motifs */}
         <motion.div style={{ y: artY }} className="relative">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid place-items-center">
             <RingsMotif className="w-[130%] max-w-none opacity-70" />
@@ -132,10 +132,18 @@ export function Hero({ t }: { t: Dict }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             // Narrower than the column so the floating cards sit clear of it.
-            className="relative mx-auto max-w-[17.5rem]"
+            className="relative mx-auto max-w-[22rem]"
           >
             <div className="animate-float-slow">
-              <ProductJar capsulesLabel={t.product.capsulesUnit} />
+              <Image
+                src="/product/pill.png"
+                alt={`${t.product.title} — ${t.product.specs[0].value}, ${t.product.specs[2].value}`}
+                width={433}
+                height={577}
+                priority
+                sizes="(max-width: 1024px) 80vw, 22rem"
+                className="h-auto w-full drop-shadow-[0_28px_40px_rgba(36,10,16,0.55)]"
+              />
             </div>
 
             <motion.div
@@ -151,18 +159,6 @@ export function Hero({ t }: { t: Dict }) {
               </span>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.95 }}
-              // Hidden on phones — at that width it would sit on the pack.
-              className="glass-dark absolute -right-28 top-24 hidden w-32 rounded-[var(--radius-md)] border border-gold-500/25 p-3.5 shadow-[var(--shadow-lift)] sm:block"
-            >
-              <CapsuleMotif className="w-14 rotate-[-18deg]" />
-              <p className="mt-3 text-[10px] font-semibold leading-tight text-bone-100">
-                {t.product.specs[1].value}
-              </p>
-            </motion.div>
           </motion.div>
         </motion.div>
       </div>

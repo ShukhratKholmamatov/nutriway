@@ -10,7 +10,8 @@ import {
   SITE_URL,
   brand,
   locations,
-  phones,
+  allPhones,
+  primaryPhone,
   social,
   type Locale,
 } from "@/lib/site";
@@ -39,13 +40,13 @@ export function OrganizationJsonLd({ locale }: { locale: Locale }) {
     logo: `${SITE_URL}${brand.logo}`,
     image: `${SITE_URL}/${locale}/opengraph-image`,
     description: t.meta.description,
-    telephone: phones.map((p) => p.tel),
+    telephone: allPhones.map((p) => p.tel),
     sameAs: [social.telegram, social.instagram],
     areaServed: { "@type": "Country", name: "Uzbekistan" },
-    contactPoint: phones.map((p) => ({
+    contactPoint: allPhones.map((p) => ({
       "@type": "ContactPoint",
       telephone: p.tel,
-      contactType: p.role === "sales" ? "sales" : "customer service",
+      contactType: p.role,
       availableLanguage: ["uz", "ru"],
       areaServed: "UZ",
     })),
@@ -70,7 +71,7 @@ export function OrganizationJsonLd({ locale }: { locale: Locale }) {
     parentOrganization: { "@id": `${SITE_URL}/#organization` },
     image: `${SITE_URL}${brand.logo}`,
     url: `${SITE_URL}/${locale}`,
-    telephone: phones[0].tel,
+    telephone: primaryPhone.tel,
     priceRange: "$$",
     openingHours: loc.hours,
     address: {
