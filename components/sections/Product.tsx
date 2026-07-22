@@ -1,10 +1,9 @@
+import Image from "next/image";
 import { Check, Droplets, Sparkles, Bone } from "lucide-react";
 import type { Dict } from "@/lib/content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
-import { ProductJar } from "@/components/ui/ProductJar";
-import { RingsMotif } from "@/components/ui/Motifs";
 
 const SUPPORT_ICONS = [Droplets, Sparkles, Bone];
 
@@ -13,19 +12,18 @@ export function Product({ t }: { t: Dict }) {
     <section id="product" className="relative bg-bone-50 py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-14 lg:grid-cols-[1fr_1.05fr] lg:items-start lg:gap-16">
-          {/* Vector pack */}
+          {/* Product photography */}
           <div className="lg:sticky lg:top-28">
             <Reveal>
-              <div className="relative overflow-hidden rounded-[var(--radius-xl)] bg-gradient-to-b from-bone-100 to-bone-200 p-10 shadow-[var(--shadow-lift)] sm:p-14">
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 grid place-items-center"
-                >
-                  <RingsMotif className="w-[125%] max-w-none" />
-                </div>
-                <div className="relative mx-auto max-w-xs">
-                  <ProductJar capsulesLabel={t.product.capsulesUnit} />
-                </div>
+              <div className="overflow-hidden rounded-[var(--radius-xl)] shadow-[var(--shadow-lift)] ring-1 ring-wine-800/10">
+                <Image
+                  src="/product/collagen.jpg"
+                  alt={`${t.product.title} — ${t.product.specs[0].value}, ${t.product.specs[2].value}`}
+                  width={1024}
+                  height={1280}
+                  sizes="(max-width: 1024px) 92vw, 46vw"
+                  className="h-auto w-full object-cover"
+                />
               </div>
             </Reveal>
 
