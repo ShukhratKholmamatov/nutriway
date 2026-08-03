@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "build:cpanel": "next build && node scripts/assemble-standalone.mjs",
     "lint": "eslint",
     "telegram:chat-id": "node scripts/get-chat-id.mjs"
   },

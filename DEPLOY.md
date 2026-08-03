@@ -22,6 +22,79 @@ hosting will not work.
 
 ---
 
+---
+
+# ⭐ Recommended: build on the server via cPanel Terminal
+
+If your cPanel has **Terminal**, this is the easiest and most reliable path — the
+build runs natively on Linux, so there's no cross-OS binary problem and no need
+for the GitHub Action. Every command below is verified.
+
+### 1. Create the Node.js app first
+cPanel → **Setup Node.js App** → **Create Application**:
+
+| Field | Value |
+| --- | --- |
+| Node.js version | **20** or newer |
+| Application mode | **Production** |
+| Application root | `nutriway` |
+| Application startup file | `start.js` |
+
+Click **Create**. This makes the `~/nutriway` folder and shows a command like
+`source /home/USER/nodevenv/nutriway/20/bin/activate && cd /home/USER/nutriway`
+— **copy that line**, you need it next.
+
+### 2. Open cPanel → Terminal, and run
+
+```bash
+# paste the activate line cPanel gave you in step 1, then:
+cd ~/nutriway
+
+# clone the repo INTO this folder (note the trailing dot)
+git clone https://github.com/ShukhratKholmamatov/nutriway.git .
+
+# if git says the folder is not empty, clone elsewhere and copy in:
+#   git clone https://github.com/ShukhratKholmamatov/nutriway.git /tmp/nw
+#   cp -rT /tmp/nw ~/nutriway && rm -rf /tmp/nw
+
+npm install
+npm run build:cpanel        # builds AND assembles the standalone server
+```
+
+### 3. Set the environment variables
+In the Node.js App screen, add:
+
+| Name | Value |
+| --- | --- |
+| `TELEGRAM_BOT_TOKEN` | your BotFather token |
+| `TELEGRAM_CHAT_ID` | `-1004454698076` |
+| `NEXT_PUBLIC_SITE_URL` | `https://your-real-domain` |
+| `NODE_ENV` | `production` |
+
+### 4. Restart
+Press **Restart** in the Node.js App screen. Open your domain — the site loads
+and the contact form posts to your Telegram group.
+
+### Updating later
+```bash
+# paste the activate line, then:
+cd ~/nutriway
+git pull
+npm install
+npm run build:cpanel
+```
+…and press **Restart**.
+
+> **If the build gets killed** ("Killed" / out-of-memory), your shared plan
+> doesn't have enough RAM to build. Use the GitHub-artifact method below instead
+> (it builds on GitHub, you upload the result).
+
+---
+
+# Alternative: upload a pre-built bundle from GitHub
+
+Use this only if you don't have Terminal, or the on-server build runs out of memory.
+
 ## Step 1 — Get a Linux build from GitHub
 
 1. Push this repo to GitHub (already done).
