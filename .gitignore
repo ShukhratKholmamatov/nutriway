@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local production bundles (must be built on Linux via CI, never committed)
+/deploy
+/bundle
