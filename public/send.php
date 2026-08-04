@@ -16,6 +16,16 @@ $CHAT_ID   = '-1004454698076';           // "Nutriway conversions" group
 // $THREAD_ID = 12;                       // uncomment for forum topics
 // -------------------------------------------------------------------------
 
+// Fallbacks in case the mbstring extension isn't installed on the host.
+if (!function_exists('mb_substr')) {
+  function mb_substr($s, $start, $len = null) {
+    return $len === null ? substr($s, $start) : substr($s, $start, $len);
+  }
+}
+if (!function_exists('mb_strlen')) {
+  function mb_strlen($s) { return strlen($s); }
+}
+
 header('Content-Type: application/json; charset=utf-8');
 
 function fail($code, $error) {
@@ -53,7 +63,8 @@ $page    = $clip($data['page'] ?? '', 200);
 if (mb_strlen($name) < 2) fail(400, 'invalid_name');
 if (strlen(preg_replace('/\D/', '', $phone)) < 7) fail(400, 'invalid_phone');
 
-$esc = fn($s) => htmlspecialchars($s, ENT_NOQUOTES, 'UTF-8');
+// Regular closure (not an arrow fn) so this runs on older PHP too.
+$esc = function ($s) { return htmlspecialchars($s, ENT_NOQUOTES, 'UTF-8'); };
 $stamp = (new DateTime('now', new DateTimeZone('Asia/Tashkent')))->format('d.m.Y H:i');
 
 $lines = [

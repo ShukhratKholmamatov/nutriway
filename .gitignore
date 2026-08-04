@@ -44,3 +44,9 @@ next-env.d.ts
 # Local production bundles (must be built on Linux via CI, never committed)
 /deploy
 /bundle
+
+# Static export output + upload zip (generated)
+/out
+/nutriway-site.zip
+/_reference
+/send.php
