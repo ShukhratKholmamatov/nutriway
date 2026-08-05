@@ -33,8 +33,8 @@ export const brand = {
  * E.164 in `tel`, pretty form in `label`.
  */
 export const primaryPhone = {
-  tel: "+998953931818",
-  label: "+998 (95) 393-18-18",
+  tel: "+998913310000",
+  label: "+998 (91) 331-00-00",
 } as const;
 
 /** Department lines listed in the contacts section. */
@@ -45,7 +45,6 @@ export const phones = [
 /** Every number the business publishes — used for structured data. */
 export const allPhones = [
   { ...primaryPhone, role: "customer service" },
-  ...phones,
 ] as const;
 
 export const social = {
